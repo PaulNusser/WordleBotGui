@@ -1,6 +1,9 @@
 import pygame
 import sys
 import wordleSolver
+import gameState
+
+
 def main():
     
     pygame.init()
@@ -17,6 +20,12 @@ def main():
     current_guess = []
     yellow_letters = []
     green_letters =[]
+
+
+
+    game_state = gameState()
+   
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -26,9 +35,11 @@ def main():
                     current_guess.append(chr(event.key))
             elif (event.type == pygame.K_RETURN):
                 if len(current_guess) == 5:
-                    #check guess
-            
-            
+                    pattern = game_state.checkWord(current_guess)
+                    if (sum(pattern) == 10):
+                        game_state.wordFound = True
+                    else:
+
         screen.fill((255,255,255))
         screen.blit(background_image, (50,0))
         display_keyboard(screen,wrong_letters)
@@ -36,7 +47,12 @@ def main():
         
     pygame.quit()
     sys.exit()
-def check_guess()
+
+
+
+def display_word(game_state, screen,current_guess,letter_color):
+    
+
 def display_keyboard(screen, wrong_letters):
     font = pygame.font.Font(None, 36)
     KEYBOARD = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
@@ -91,6 +107,8 @@ def display_keyboard(screen, wrong_letters):
         text_rect = text_surface.get_rect(center=rectangle.center)
         screen.blit(text_surface, text_rect)
         i += 1
+
+
 
 
 
