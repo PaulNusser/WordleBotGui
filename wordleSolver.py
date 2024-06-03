@@ -67,8 +67,6 @@ class wordleSolver:
         for word in self.validWords:
             calculatedEntropies.append((word, self.calculateExpectedEntropy(word)))
             i+=1
-            if i%50 == 0:
-                print(i)
         calculatedEntropies.sort(key= lambda x: x[1], reverse=True)
         return calculatedEntropies[:n]
 
@@ -78,23 +76,12 @@ class wordleSolver:
             for letter in guessedWordWithColors:
                 if letter[1] == 2 and (letter[0],index) not in self.greenLettersAndIndexes:
                     self.greenLettersAndIndexes.append((letter[0], index))
-                    print("appended to greenList: ")
                     print(letter[0])
                 elif letter[1] == 1 and (letter[0],index):
                     self.yellowLettersAndIndexes.append((letter[0],index))
-                    print("appended to yellow List: ")
                     print(letter[0])
-                    
-                
-                ##elif ((letter[1] == 0) and (letter[0] not in self.greyLettersList) and (letter[0] not in [t[0] for t in self.yellowLettersAndIndexes]) and (letter[0] not in [x[0] for x in self.greenLettersAndIndexes]):
                 elif ((letter[1] == 0) and (letter[0] not in self.greyLettersList) and (letter[0] not in [t[0] for t in self.yellowLettersAndIndexes]) and (letter[0] not in [x[0] for x in self.greenLettersAndIndexes])):
-                    
-                    self.greyLettersList.append(letter[0])
-                    print("appended to grey List: ")
-                    print(letter[0])
-
-                
-                
+                    self.greyLettersList.append(letter[0])               
                 elif ((letter[1] == 0) and (letter[0] in [x[0] for x in self.greenLettersAndIndexes] )):
                     self.deleteGreyDupes(letter)
 

@@ -1,6 +1,8 @@
 import pygame
 import sys
+import wordleSolver
 def main():
+    
     pygame.init()
     pygame.font.init()
     SCREEN_WIDTH = 617.25
